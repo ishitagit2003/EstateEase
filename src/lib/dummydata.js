@@ -10,7 +10,6 @@ export const listData = [
       latitude: 51.5074,
       longitude: -0.1278,
     },
-    
     {
       id: 2,
       title: "An Awesome Apartment Near the Park! Almost too good to be true!",

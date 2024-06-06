@@ -27,6 +27,10 @@ function App() {
           element:<SinglePage/>
         },
         {
+          path:"/profile",
+          element:<ProfilePage/>
+        },
+        {
           path:"/login",
           element:<Login/>
         },

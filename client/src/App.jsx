@@ -1,4 +1,4 @@
-import HomePage from "./routes/homePage/homePage"
+import HomePage from "./routes/homePage/homePage";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -6,12 +6,14 @@ import {
 import ListPage from "./routes/listPage/listPage";
 import Layout from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage";
+import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
+import Register from "./routes/register/register";
 
 function App() {
   const router = createBrowserRouter([
-  {
-    path: "/",
+    {
+      path: "/",
       element: <Layout/>,
       children:[
         {
@@ -34,12 +36,17 @@ function App() {
           path:"/login",
           element:<Login/>
         },
+        {
+          path:"/register",
+          element:<Register/>
+        }
       ]
-  }
+    }
   ]);
+
   return (
     <RouterProvider router={router}/>
-  )
+  );
 }
 
-export default App
+export default App;

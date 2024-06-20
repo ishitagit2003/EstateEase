@@ -1,12 +1,48 @@
-const { Schema, model } = require("mongoose");
+import mongoose from 'mongoose';
 
-const userSchema = new Schema(
-  {
-    
-  },
-  { timestamps: true }
-);
+const { Schema, model } = mongoose;
 
-const User = model("blog", userSchema);
+const userSchema = new Schema({
+    _id: { type: Schema.Types.ObjectId, auto: true },
+    email: 
+    {
+         type: String, 
+         required: true, 
+         unique: true 
+    },
+    username:
+    { 
+        type: String, 
+        required: true,
+        unique: true 
+    },
+    password: 
+    {
+         type: String,
+         required: true 
+    },
+    avatar: String,
+    createdAt: 
+    { 
+        type: Date,
+        default: Date.now 
+    },
+    posts: 
+    [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'Post' 
+    }],
+    savedPosts: 
+    [{
+         type: Schema.Types.ObjectId, 
+         ref: 'SavedPost' 
+    }],
+    chatIDs: 
+    [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'Chat' 
+    }]
+  });
+const User = model("User", userSchema);
 
-module.exports = User;
+export default User;

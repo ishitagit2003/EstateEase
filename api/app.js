@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import authRoute from "./routes/auth.route.js";
 import postRoute from "./routes/post.route.js";
 import testRoute from "./routes/test.route.js";
-import userRoute from "./routes/user.route.js";
+// import userRoute from "./routes/user.route.js";
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ mongoose.connect(process.env.DATABASE_URL)
   
 
 app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
+// app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/test", testRoute);
 

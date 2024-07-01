@@ -1,8 +1,27 @@
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import "./profilePage.scss";
+import apiRequest from "../../lib/apiRequest";
+import {  useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
+  // const data = useLoaderData();
+
+  const { updateUser, currentUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await apiRequest.post("/auth/logout");
+      updateUser(null);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="profilePage">
       <div className="details">
@@ -14,17 +33,15 @@ function ProfilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img
-                src="public\profile.jpg"
-                alt=""
-              />
+              <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
             </span>
             <span>
-              Username: <b>Ishita Gupta</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              E-mail: <b>ishi@gmail.com</b>
+              E-mail: <b>{currentUser.email}</b>
             </span>
+            <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="title">
             <h1>My List</h1>

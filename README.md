@@ -1,8 +1,8 @@
-# EstateEase
+ # EstateEase
 
 EstateEase is a comprehensive real estate management application designed to simplify the process of buying, selling, and managing properties. This application offers features such as property listings, user authentication, and interactive maps to enhance the user experience.
 
-## Features
+## Features:
 
 - **User Authentication:** Secure login and registration system for users.
 - **Property Listings:** Browse and search for properties with detailed information and images.

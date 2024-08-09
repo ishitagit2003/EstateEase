@@ -23,12 +23,12 @@ function App() {
         {
           path: "/list",
           element: <ListPage />,
-          loader: listPageLoader,
+          // loader: listPageLoader,
         },
         {
           path: "/:id",
           element: <SinglePage />,
-          loader: singlePageLoader,
+          // loader: singlePageLoader,
         },
 
         {

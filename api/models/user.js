@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
-    _id: { type: Schema.Types.ObjectId, auto: true },
     email: 
     {
          type: String, 
@@ -43,6 +42,7 @@ const userSchema = new Schema({
         ref: 'Chat' 
     }]
   });
+  
 const User = model("User", userSchema);
 
 export default User;

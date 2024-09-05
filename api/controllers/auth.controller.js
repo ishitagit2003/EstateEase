@@ -1,18 +1,24 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import  User from '../models/user.js';
+import prisma from "../lib/prisma.js";
 
 export const register = async (req, res) => {
-    const { username, email, password } = req.body;
+  const { username, email, password } = req.body;
 
-    try {
+  try {
+    // HASH THE PASSWORD
+
     const hashedPassword = await bcrypt.hash(password, 10);
+
     console.log(hashedPassword);
 
-    const newUser = await User.create({
+    // CREATE A NEW USER AND SAVE TO DB
+    const newUser = await prisma.user.create({
+      data: {
         username,
         email,
         password: hashedPassword,
+      },
     });
 
     console.log(newUser);
@@ -24,28 +30,30 @@ export const register = async (req, res) => {
   }
 };
 
-
 export const login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Find the user by username
-    const user = await User.findOne({ username });
+    // CHECK IF THE USER EXISTS
 
-    if (!user) {
-      return res.status(400).json({ message: "Invalid Credentials!" });
-    }
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
 
-    // Check if the password is correct
+    if (!user) return res.status(400).json({ message: "Invalid Credentials!" });
+
+    // CHECK IF THE PASSWORD IS CORRECT
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordValid) {
+    if (!isPasswordValid)
       return res.status(400).json({ message: "Invalid Credentials!" });
-    }
 
+    // GENERATE COOKIE TOKEN AND SEND TO THE USER
+
+    // res.setHeader("Set-Cookie", "test=" + "myValue").json("success")
     const age = 1000 * 60 * 60 * 24 * 7;
 
-    //token= payload and secret_Key
     const token = jwt.sign(
       {
         id: user.id,
@@ -54,8 +62,7 @@ export const login = async (req, res) => {
       process.env.JWT_SECRET_KEY,
       { expiresIn: age }
     );
-    
-    // Exclude the password from the user object before sending it in the response
+
     const { password: userPassword, ...userInfo } = user;
 
     res
@@ -68,12 +75,10 @@ export const login = async (req, res) => {
       .json(userInfo);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to log in!" });
+    res.status(500).json({ message: "Failed to login!" });
   }
 };
 
-
-export const logout = async (req, res) => {
-    res.clearCookie("token").status(200).json({ message: "Logout Successful" });
+export const logout = (req, res) => {
+  res.clearCookie("token").status(200).json({ message: "Logout Successful" });
 };
-

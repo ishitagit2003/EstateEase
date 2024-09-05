@@ -1,4 +1,4 @@
-import { listData } from "../../lib/dummydata";
+// import { listData } from "../../lib/dummydata";
 import "./listPage.scss";
 import Filter from "../../components/filter/Filter"
 import Card from "../../components/card/Card"
@@ -8,7 +8,7 @@ import { Suspense } from "react";
 
 
 function ListPage() {
-  const data = listData;
+  const data = useLoaderData();;
 
   return (
   <div className="listPage">

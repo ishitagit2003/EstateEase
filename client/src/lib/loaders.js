@@ -5,6 +5,7 @@ export const singlePageLoader = async ({ request, params }) => {
   const res = await apiRequest("/posts/" + params.id);
   return res.data;
 };
+//split query of url for max and min range
 export const listPageLoader = async ({ request, params }) => {
   const query = request.url.split("?")[1];
   const postPromise = apiRequest("/posts?" + query);
@@ -23,3 +24,4 @@ export const profilePageLoader = async () => {
 };
 
 // defer and suspense used to show loading for larger or heavy db
+//loaders are uded to fetch data

@@ -9,7 +9,7 @@ function Chat() {
         <h1>Messages</h1>
         <div className="message">
           <img
-            src="public\profile.jpg"
+            src="profile.jpg"
             alt=""
           />
           <span>Ishita Gupta</span>
@@ -17,7 +17,7 @@ function Chat() {
         </div>
         <div className="message">
           <img
-            src="public\profile.jpg"
+            src="profile.jpg"
             alt=""
           />
           <span>Ishita Gupta</span>
@@ -25,7 +25,7 @@ function Chat() {
         </div>
         <div className="message">
           <img
-            src="public\profile.jpg"
+            src="profile.jpg"
             alt=""
           />
           <span>Ishita Gupta</span>
@@ -33,7 +33,7 @@ function Chat() {
         </div>
         <div className="message">
           <img
-            src="public\profile.jpg"
+            src="profile.jpg"
             alt=""
           />
           <span>Ishita Gupta</span>
@@ -41,7 +41,7 @@ function Chat() {
         </div>
         <div className="message">
           <img
-            src="public\profile.jpg"
+            src="profile.jpg"
             alt=""
           />
           <span>Ishita Gupta</span>
@@ -49,7 +49,7 @@ function Chat() {
         </div>
         <div className="message">
           <img
-            src="public\profile.jpg"
+            src="profile.jpg"
             alt=""
           />
           <span>Ishita Gupta</span>
